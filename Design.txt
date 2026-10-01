@@ -1,0 +1,51 @@
+OOP BIMBEL
+
+Bimbel 
+- nama
+- alamat
+- listSiswa
+- listTutor
+
+Materi
+- kodeMater
+- namaMateri
+
+Ruangan
+- noRuangan
+- kapasitas
+
+Jadwal
+- Materi
+- tanggal
+- listSiswa
+- Ruangan
+- Tutor
+
+Person
+- nama
+- no_hp
+- email
+
+Siswa 
+- kelas
+- jurusan
+- targetKampus
+- targetJurusan
+- listHasilTo
+
+Tutor 
+- bidang
+- statusPegawai
+
+Tryout
+- namaTryout
+- listSoal
+
+Soal
+- kodeSoal
+- subtest
+
+HasilTryout
+- skor
+- statusLolos
+- Tryout
