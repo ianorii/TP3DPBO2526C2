@@ -9,7 +9,11 @@ class Siswa : public Person{
 
     public:
         // empty constructor
-        Siswa() {}
+        Siswa() {
+            kelas = 0;
+            targetJurusan = "";
+            targetKampus = "";
+        }
 
         // constructor with parameter
         Siswa(

@@ -27,5 +27,6 @@ class Tutor : public Person{
         void setStatus(string status) {this->status = status;}
         string getStatus() {return status;}
 
+        // destructor
         ~Tutor() {}
 };

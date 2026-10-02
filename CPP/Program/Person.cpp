@@ -34,5 +34,6 @@ class Person {
         void setEmail(string email) {this->email = email;}
         string getEmail() {return email;}
 
+        // destructor
         ~Person() {}
 };
