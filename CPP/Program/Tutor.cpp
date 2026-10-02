@@ -1,4 +1,3 @@
-#include "Person.cpp"
 using namespace std;
 
 class Tutor : public Person{

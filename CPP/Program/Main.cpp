@@ -1,12 +1,14 @@
 #include<bits/stdc++.h>
+#include "Person.cpp"
 #include "Tutor.cpp"
+#include "Siswa.cpp"
 
 using namespace std;
 
 int main() {
-    Tutor data = Tutor("Rian", "0489654886", "rian@gmail", "Math", "Freelance");
+    Siswa data = Siswa("Rian", "09689699", "rian@", 12, "UI", "Ilkom");
 
-    cout << data.getNama() << " " << data.getBidang() << " " << data.getStatus() << endl;
+    cout << data.getNama() << " " << data.getTargetKampus() << endl;
 
     return 0;
 }
