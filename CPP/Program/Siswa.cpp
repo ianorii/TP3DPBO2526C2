@@ -1,4 +1,3 @@
-// #include "HasilTryout.cpp"
 using namespace std;
 
 class Siswa : public Person{
@@ -6,7 +5,7 @@ class Siswa : public Person{
         int kelas;
         string targetJurusan;
         string targetKampus;
-        // vector<HasilTryout> listHasilTryout;
+        vector<HasilTryout> listHasilTryout;
 
     public:
         // empty constructor
@@ -15,11 +14,13 @@ class Siswa : public Person{
         // constructor with parameter
         Siswa(
             string nama, string noHp, string email, int kelas,
-            string targetKampus, string targetJurusan
+            string targetKampus, string targetJurusan,
+            vector<HasilTryout> listHasilTryout
         ) : Person(nama, noHp, email) {
             this->kelas = kelas;
             this->targetJurusan = targetJurusan;
             this->targetKampus = targetKampus;
+            this->listHasilTryout = listHasilTryout;
         }
 
         // setter and getter for kelas
@@ -37,6 +38,14 @@ class Siswa : public Person{
             this->targetKampus = targetKampus;
         }
         string getTargetKampus() {return targetKampus;}
+
+        // add list for listHasilTryout
+        void addHasil(HasilTryout hasil) {
+            listHasilTryout.push_back(hasil);
+        }
+
+        // getter for listHasilTryout
+        vector<HasilTryout> getListHasilTryout() {return listHasilTryout;}
 
         ~Siswa() {}
 };
