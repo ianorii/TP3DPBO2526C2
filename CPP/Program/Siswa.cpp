@@ -44,7 +44,8 @@ class Siswa : public Person{
             listHasilTryout.push_back(hasil);
         }
 
-        // getter for listHasilTryout
+        // setter and getter for listHasilTryout
+        void setListHasilTryout(vector<HasilTryout> data) {listHasilTryout = data;}
         vector<HasilTryout> getListHasilTryout() {return listHasilTryout;}
 
         ~Siswa() {}
