@@ -19,8 +19,8 @@ class Tryout{
         }
 
         // setter and getter for namaTryout
-        void setNama(string namaTryout) {this->namaTryout = namaTryout;}
-        string getNama() {return namaTryout;}
+        void setNamaTryout(string namaTryout) {this->namaTryout = namaTryout;}
+        string getNamaTryout() {return namaTryout;}
 
         // setter and getter for listSoal
         void setListSoal(vector<Soal> listSoal) {this->listSoal = listSoal;}
