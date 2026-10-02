@@ -1,12 +1,12 @@
 #include<bits/stdc++.h>
-#include "Person.cpp"
+#include "Tutor.cpp"
 
 using namespace std;
 
 int main() {
-    Person rian = Person("Rian", "0876868", "rian@gmail.com");
+    Tutor data = Tutor("Rian", "0489654886", "rian@gmail", "Math", "Freelance");
 
-    cout << rian.getNama() << endl;
+    cout << data.getNama() << " " << data.getBidang() << " " << data.getStatus() << endl;
 
     return 0;
 }
