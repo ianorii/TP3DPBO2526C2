@@ -5,6 +5,7 @@ Bimbel
 - alamat
 - listSiswa
 - listTutor
+- listJadwal
 
 Materi
 - kodeMater
