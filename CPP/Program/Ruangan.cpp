@@ -8,7 +8,10 @@ class Ruangan {
 
     public:
         // empty constructor
-        Ruangan() {}
+        Ruangan() {
+            kodeRuangan = "";
+            kapasitas = 0;
+        }
 
         // constructor with parameter
         Ruangan(string kodeRuangan, int kapasitas) {
