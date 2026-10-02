@@ -27,6 +27,6 @@ class Materi {
         void setNamaMateri(string namaMateri) {this->namaMateri = namaMateri;}
         string getNamaMateri() {return namaMateri;}
 
-        // desctructor
+        // destructor
         ~Materi() {}
 };
