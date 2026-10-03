@@ -4,17 +4,17 @@ class HasilTryout{
     private:
         // atribut
         float skor;
-        Tryout dataTryout;
+        Tryout* dataTryout;
 
     public:
         // empty konstructor
         HasilTryout() {
             skor = 0.00;
-            dataTryout = Tryout();
+            dataTryout = nullptr;
         }
 
         // constructor with parameter
-        HasilTryout(float skor, Tryout dataTryout) {
+        HasilTryout(float skor, Tryout* dataTryout) {
             this->skor = skor;
             this->dataTryout = dataTryout;
         }
@@ -24,8 +24,8 @@ class HasilTryout{
         float getSkor() {return skor;}
 
         // setter and getter for Tryout dataTryout
-        void setTryout(Tryout dataTryout) {this->dataTryout = dataTryout;}
-        Tryout getTryout() {return dataTryout;}
+        void setTryout(Tryout &dataTryout) {this->dataTryout = &dataTryout;}
+        Tryout* getTryout() {return dataTryout;}
 
         // destructor
         ~HasilTryout() {}

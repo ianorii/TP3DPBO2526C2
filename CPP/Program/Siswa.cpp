@@ -13,18 +13,18 @@ class Siswa : public Person{
             kelas = 0;
             targetJurusan = "";
             targetKampus = "";
+            listHasilTryout = {};
         }
 
         // constructor with parameter
         Siswa(
             string nama, string noHp, string email, int kelas,
             string targetKampus, string targetJurusan,
-            vector<HasilTryout> listHasilTryout
+            vector<HasilTryout> listHasilTryout = {}
         ) : Person(nama, noHp, email) {
             this->kelas = kelas;
             this->targetJurusan = targetJurusan;
             this->targetKampus = targetKampus;
-            this->listHasilTryout = listHasilTryout;
         }
 
         // setter and getter for kelas
@@ -42,15 +42,14 @@ class Siswa : public Person{
             this->targetKampus = targetKampus;
         }
         string getTargetKampus() {return targetKampus;}
-
-        // add list for listHasilTryout
-        void addHasil(HasilTryout hasil) {
-            listHasilTryout.push_back(hasil);
-        }
-
+        
         // setter and getter for listHasilTryout
-        void setListHasilTryout(vector<HasilTryout> data) {listHasilTryout = data;}
-        vector<HasilTryout> getListHasilTryout() {return listHasilTryout;}
+        void setHasil(float skor, Tryout& dataTryout) {
+            listHasilTryout.emplace_back(skor, &dataTryout);
+        }
+        const vector<HasilTryout>& getListHasilTryout() {
+            return listHasilTryout;
+        }
 
         ~Siswa() {}
 };

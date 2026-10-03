@@ -6,30 +6,27 @@
 #include "Tutor.cpp"
 #include "Siswa.cpp"
 
+#include "Ruangan.cpp"
+#include "Materi.cpp"
+#include "Jadwal.cpp"
+
 using namespace std;
 
 int main() {
-    vector<Soal> latsol(2);
-    latsol[0] = Soal("LT001", "Math");
-    latsol[1] = Soal("LT002", "Science");
+    Tutor a = Tutor("qeya", "087966", "qeya@gmail", "Math", "Freelance");
+    Materi mat = Materi("M001", "Aljabar");
+    Ruangan kelas = Ruangan("K001", 10);
 
-    Tryout temp1 = Tryout("Tryout 1", latsol);
-    Tryout temp2 = Tryout("Tryout 2", latsol);
+    vector<Siswa> data(2);
+    data[0] = Siswa("Rudi", "076547", "rud@", 10, "IT", "UPI");
+    data[1] = Siswa("Rahmat", "576547", "mat@", 12, "Teknik", "ITB");
 
-    vector<HasilTryout> hasil(2);
-    hasil[0] = HasilTryout(800, temp1);
-    hasil[1] = HasilTryout(788, temp2);
-    Siswa data = Siswa("Rian", "09689699", "rian@", 12, "UI", "Ilkom", hasil);
+    Jadwal senin = Jadwal("10-10-2026", "07:00", "10:00", a, mat, kelas, {&data[0], &data[1]});
 
-    cout << data.getNama() << endl;
-    for(HasilTryout i : data.getListHasilTryout()) {
-        Tryout x = i.getTryout();
-        cout << x.getNama() << endl;
-
-        for(Soal j: x.getListSoal()) {
-            cout << " - " << j.getKodeSoal() << " : " << j.getSubtest() << endl;
-        }
-    }
+    cout << senin.getTanggal() << endl;
+    cout << senin.getJamMulai() << "-" << senin.getJamSelesai()<< endl;
+    cout << (senin.getTutor())->getNama() << endl;
+    cout << (senin.getMateri())->getNamaMateri() << endl;
 
     return 0;
 }
