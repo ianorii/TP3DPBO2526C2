@@ -16,6 +16,7 @@ class Tryout{
         // constructor with parameter
         Tryout(string namaTryout, vector<Soal> listSoal = {}) {
             this->namaTryout = namaTryout;
+            this->listSoal = listSoal;
         }
 
         // setter and getter for namaTryout

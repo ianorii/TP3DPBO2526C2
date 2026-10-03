@@ -19,12 +19,12 @@ class Siswa : public Person{
         // constructor with parameter
         Siswa(
             string nama, string noHp, string email, int kelas,
-            string targetKampus, string targetJurusan,
-            vector<HasilTryout> listHasilTryout = {}
+            string targetJurusan, string targetKampus
         ) : Person(nama, noHp, email) {
             this->kelas = kelas;
             this->targetJurusan = targetJurusan;
             this->targetKampus = targetKampus;
+            this->listHasilTryout = {};
         }
 
         // setter and getter for kelas

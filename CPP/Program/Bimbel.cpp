@@ -24,7 +24,7 @@ class Bimbel {
         }
 
         // constructor with parameter
-        Bimbel(string& nama, string& alamat) {
+        Bimbel(string nama, string alamat) {
             this->nama = nama;
             this->alamat = alamat;
         }
@@ -49,7 +49,7 @@ class Bimbel {
 
         // setter and getter for materi
         void addMateri(Materi dataMateri) {listMateri.push_back(dataMateri);}
-        void setListMateri(const vector<Jadwal>& listMateri) {this->listMateri = listMateri;}
+        void setListMateri(const vector<Materi>& listMateri) {this->listMateri = listMateri;}
         vector<Materi> getListMateri() {return listMateri;}
         
         // setter and getter for jadwal 
@@ -58,7 +58,7 @@ class Bimbel {
         vector<Jadwal> getListJadwal() {return listJadwal;}
         
         // setter and getter for ruangan
-        void addRuangan(Jadwal dataRuangan) {listRuangan.push_back(dataRuangan);}
+        void addRuangan(Ruangan dataRuangan) {listRuangan.push_back(dataRuangan);}
         void setListRuangan(const vector<Ruangan>& listRuangan) {this->listRuangan = listRuangan;}
         vector<Ruangan> getListRuangan() {return listRuangan;}
 
