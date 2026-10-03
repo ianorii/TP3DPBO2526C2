@@ -17,17 +17,17 @@ using namespace std;
 Bimbel dummyBimbel;
 
 // list of object
-// ukuran tetap (tidak pakai push_back) supaya pointer yang dipegang
-// Jadwal (Tutor*, Materi*, Ruangan*, Siswa*) tidak menjadi invalid
-vector<Tryout> dummyTryout(3);
-vector<Tutor> dummyTutor(2);
-vector<Siswa> dummySiswa(2);
-vector<Materi> dummyMateri(2);
-vector<Ruangan> dummyRuangan(2);
-vector<Jadwal> dummyJadwal(3);
+vector<Tryout> dummyTryout;
+vector<Tutor> dummyTutor;
+vector<Siswa> dummySiswa;
 
 void dataDummy() {
-    // Data Soal -> dimasukkan ke tiap Tryout
+    // Resize vector
+    dummyTryout.resize(3);
+    dummyTutor.resize(2);
+    dummySiswa.resize(2);
+
+    // Data Soal : dimasukkan ke tiap Tryout
     dummyTryout[0] = Tryout("TO Diagnostic Test UTBK SNBT");
     dummyTryout[0].setSoal("PU001", "Penalaran Umum");
     dummyTryout[0].setSoal("PK001", "Pengetahuan Kuantitatif");
@@ -62,38 +62,36 @@ void dataDummy() {
     );
     dummySiswa[1].setHasil(690.40, dummyTryout[1]);
 
-    // Data Materi
-    dummyMateri[0] = Materi("MATPK01", "Trik Cepat Persamaan & Fungsi Kuadrat UTBK");
-    dummyMateri[1] = Materi("MATPU01", "Penalaran Logis & Analitis Super Cepat");
-
-    // Data Ruangan
-    dummyRuangan[0] = Ruangan("R101", 20);
-    dummyRuangan[1] = Ruangan("R202", 50);
-
-    // Data Jadwal
-    dummyJadwal[0] = Jadwal(
-        "12-10-2026", "15:30", "17:30",
-        dummyTutor[0], dummyMateri[1], dummyRuangan[0],
-        {&dummySiswa[0], &dummySiswa[1]}
-    );
-    dummyJadwal[1] = Jadwal(
-        "14-10-2026", "13:00", "15:00",
-        dummyTutor[1], dummyMateri[0], dummyRuangan[1],
-        {&dummySiswa[0]}
-    );
-    dummyJadwal[2] = Jadwal(
-        "16-10-2026", "16:00", "18:00",
-        dummyTutor[1], dummyMateri[0], dummyRuangan[0],
-        {&dummySiswa[1]}
-    );
-
     // Data Bimbel
     dummyBimbel = Bimbel("Bimbel Magic Academy", "Jl. Diagon Alley No. 9 3/4, Bandung");
-    for (Siswa &siswa : dummySiswa) dummyBimbel.addSiswa(&siswa);
-    for (Tutor &tutor : dummyTutor) dummyBimbel.addTutor(&tutor);
-    for (Materi &materi : dummyMateri) dummyBimbel.addMateri(materi);
-    for (Jadwal &jadwal : dummyJadwal) dummyBimbel.addJadwal(jadwal);
-    for (Ruangan &ruangan : dummyRuangan) dummyBimbel.addRuangan(ruangan);
+    dummyBimbel.setListSiswa(dummySiswa);
+    dummyBimbel.setListTutor(dummyTutor);
+
+    // Data Materi -> langsung diinstansiasi di dalam Bimbel
+    dummyBimbel.setMateri("MATPK01", "Trik Cepat Persamaan & Fungsi Kuadrat UTBK");
+    dummyBimbel.setMateri("MATPU01", "Literasi & Tata Bahasa");
+
+    // Data Ruangan -> langsung diinstansiasi di dalam Bimbel
+    dummyBimbel.setRuangan("R101", 20);
+    dummyBimbel.setRuangan("R202", 50);
+
+    // Data Jadwal -> langsung diinstansiasi di dalam Bimbel
+    // materi disesuaikan dengan bidang tutor pengajarnya
+    dummyBimbel.setJadwal(                                              // Tutor 1 (Matematika)
+        "12-10-2026", "15:30", "17:30",
+        dummyTutor[0], dummyBimbel.getMateri(0), dummyBimbel.getRuangan(0),
+        {&dummySiswa[0], &dummySiswa[1]}
+    );
+    dummyBimbel.setJadwal(                                              // Tutor 2 (Bahasa Indonesia)
+        "14-10-2026", "13:00", "15:00",
+        dummyTutor[1], dummyBimbel.getMateri(1), dummyBimbel.getRuangan(1),
+        {&dummySiswa[0]}
+    );
+    dummyBimbel.setJadwal(                                              // Tutor 2 (Bahasa Indonesia)
+        "16-10-2026", "16:00", "18:00",
+        dummyTutor[1], dummyBimbel.getMateri(1), dummyBimbel.getRuangan(0),
+        {&dummySiswa[1]}
+    );
 }
 
 int main() {
@@ -134,28 +132,44 @@ int main() {
     cout << "[ DAFTAR SISWA ]" << endl;
     for (int i = 0; i < (int)dummySiswa.size(); i++) {
         Siswa &siswa = dummySiswa[i];
+
+        // getListHasilTryout() return const&, tapi getTryout() non-const,
+        // jadi di-salin dulu ke variabel biasa
+        vector<HasilTryout> riwayat = siswa.getListHasilTryout();
+
+        // lebar nama tryout terpanjang, supaya kolom skor sejajar
+        int lebarNama = 0;
+        for (HasilTryout &hasil : riwayat) {
+            lebarNama = max(lebarNama, (int)hasil.getTryout()->getNamaTryout().size());
+        }
+
         cout << "  " << i + 1 << ". " << siswa.getNama() << " (Kelas " << siswa.getKelas() << " SMA)" << endl;
         cout << "     ├─ Kontak   : " << siswa.getNoHp() << " | " << siswa.getEmail() << endl;
         cout << "     ├─ Target   : " << siswa.getTargetJurusan() << " - " << siswa.getTargetKampus() << endl;
-        cout << "     └─ Tryout   : " << siswa.getListHasilTryout().size() << " Riwayat Tryout Selesai" << endl;
+        cout << "     └─ Tryout   :" << endl;
+        for (HasilTryout &hasil : riwayat) {
+            cout << "        - " << left << setw(lebarNama) << hasil.getTryout()->getNamaTryout()
+                 << "   (Skor : " << fixed << setprecision(2) << hasil.getSkor() << ")" << endl;
+        }
     }
     cout << endl;
     
     cout << "[ DAFTAR MATERI PEMBELAJARAN ]" << endl;
-    for (Materi &materi : dummyMateri) {
+    for (const Materi &materi : dummyBimbel.getListMateri()) {
         cout << "  • [" << materi.getKodeMateri() << "] " << materi.getNamaMateri() << endl;
     }
     cout << endl;
     
     cout << "[ DAFTAR RUANGAN KELAS ]" << endl;
-    for (Ruangan &ruangan : dummyRuangan) {
+    for (const Ruangan &ruangan : dummyBimbel.getListRuangan()) {
         cout << "  • Kode: " << ruangan.getKodeRuangan() << "   │ Kapasitas: " << ruangan.getKapasitas() << " Kursi" << endl;
     }
     cout << endl;
     
     cout << "[ DAFTAR JADWAL BIMBINGAN AKTIF ]" << endl;
-    for (int i = 0; i < (int)dummyJadwal.size(); i++) {
-        Jadwal &jadwal = dummyJadwal[i];
+    const vector<Jadwal> &listJadwal = dummyBimbel.getListJadwal();
+    for (int i = 0; i < (int)listJadwal.size(); i++) {
+        const Jadwal &jadwal = listJadwal[i];
         cout << "  • Sesi " << i + 1 << " : " << jadwal.getTanggal()
         << " (" << jadwal.getJamMulai() << " - " << jadwal.getJamSelesai() << ")" << endl;
         cout << "    ├─ Modul Pembelajaran : " << jadwal.getMateri()->getNamaMateri() << endl;

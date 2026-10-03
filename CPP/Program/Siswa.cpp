@@ -47,7 +47,7 @@ class Siswa : public Person{
         void setHasil(float skor, Tryout& dataTryout) {
             listHasilTryout.emplace_back(skor, &dataTryout);
         }
-        const vector<HasilTryout>& getListHasilTryout() {
+        const vector<HasilTryout>& getListHasilTryout() const {
             return listHasilTryout;
         }
 

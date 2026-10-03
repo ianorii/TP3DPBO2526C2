@@ -8,8 +8,8 @@ class Bimbel {
         vector<Siswa*> listSiswa;
         vector<Tutor*> listTutor;
         vector<Materi> listMateri;
-        vector<Jadwal> listJadwal;
         vector<Ruangan> listRuangan;
+        vector<Jadwal> listJadwal;
 
     public:
         // empty constructor
@@ -19,8 +19,8 @@ class Bimbel {
             listSiswa = {};
             listTutor = {};
             listMateri = {};
-            listJadwal = {};
             listRuangan = {};
+            listJadwal = {};
         }
 
         // constructor with parameter
@@ -38,29 +38,39 @@ class Bimbel {
         string getAlamat() {return alamat;}
         
         // setter and getter for listSiswa
-        void addSiswa(Siswa* dataSiswa) {listSiswa.push_back(dataSiswa);}
-        void setListSiswa(const vector<Siswa*>& listSiswa) {this->listSiswa = listSiswa;}
+        void setSiswa(Siswa* dataSiswa) {listSiswa.push_back(dataSiswa);}   // add satu siswa
+        void setListSiswa(vector<Siswa>& listSiswa) {                       // add siswa dalam list
+            for(Siswa &s: listSiswa) setSiswa(&s);
+        }
         vector<Siswa*> getListSiswa() {return listSiswa;}
         
         // setter and getter for listTutor
-        void addTutor(Tutor* dataTutor) {listTutor.push_back(dataTutor);}
-        void setListTutor(const vector<Tutor*>& listTutor) {this->listTutor = listTutor;}
+        void setTutor(Tutor* dataTutor) {listTutor.push_back(dataTutor);}   // add satu tutor
+        void setListTutor(vector<Tutor>& listTutor) {                       // add tutor dalam list
+            for(Tutor &t: listTutor) setTutor(&t);
+        }
         vector<Tutor*> getListTutor() {return listTutor;}
 
         // setter and getter for materi
-        void addMateri(Materi dataMateri) {listMateri.push_back(dataMateri);}
-        void setListMateri(const vector<Materi>& listMateri) {this->listMateri = listMateri;}
-        vector<Materi> getListMateri() {return listMateri;}
+        void setMateri(string kodeMateri, string namaMateri) {
+            listMateri.emplace_back(kodeMateri, namaMateri);
+        }
+        // akses 1 elemen (dipakai saat membangun data / membuat Jadwal)
+        Materi& getMateri(int index) {return listMateri[index];}
+        const vector<Materi>& getListMateri() const {return listMateri;}    // akses seluruh listMateri
         
         // setter and getter for jadwal 
-        void addJadwal(Jadwal dataJadwal) {listJadwal.push_back(dataJadwal);}
-        void setListJadwal(const vector<Jadwal>& listJadwal) {this->listJadwal = listJadwal;}
-        vector<Jadwal> getListJadwal() {return listJadwal;}
+        void setJadwal(string tanggal, string jamMulai, string jamSelesai, Tutor &dataTutor, Materi &dataMateri, Ruangan &dataRuangan, const vector<Siswa*> &dataSiswa) {
+            listJadwal.emplace_back(tanggal, jamMulai, jamSelesai, dataTutor, dataMateri, dataRuangan, dataSiswa);
+        }
+        const vector<Jadwal>& getListJadwal() const {return listJadwal;}
         
         // setter and getter for ruangan
-        void addRuangan(Ruangan dataRuangan) {listRuangan.push_back(dataRuangan);}
-        void setListRuangan(const vector<Ruangan>& listRuangan) {this->listRuangan = listRuangan;}
-        vector<Ruangan> getListRuangan() {return listRuangan;}
+        void setRuangan(string kodeRuangan, int kapasitas) {
+            listRuangan.emplace_back(kodeRuangan, kapasitas);
+        }
+        Ruangan& getRuangan(int index) {return listRuangan[index];}         // akses 1 elemen
+        const vector<Ruangan>& getListRuangan() const {return listRuangan;} // akses seluruh list
 
         // destructor
         ~Bimbel() {}

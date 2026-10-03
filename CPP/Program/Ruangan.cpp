@@ -21,11 +21,11 @@ class Ruangan {
 
         // setter and getter for kodeRuangan
         void setKodeRuangan(string kodeRuangan) {this->kodeRuangan = kodeRuangan;}
-        string getKodeRuangan() {return kodeRuangan;}
+        string getKodeRuangan() const {return kodeRuangan;}
 
         // setter and getter for kapasitas
         void setKapasitas(int kapasitas) {this->kapasitas = kapasitas;}
-        int getKapasitas() {return kapasitas;}
+        int getKapasitas() const {return kapasitas;}
 
         // destructor
         ~Ruangan() {}

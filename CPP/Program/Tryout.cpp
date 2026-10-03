@@ -27,7 +27,7 @@ class Tryout{
         void setSoal(string kodeSoal, string subtest) {
             listSoal.emplace_back(kodeSoal, subtest);
         }
-        const vector<Soal>& getListSoal() {
+        const vector<Soal>& getListSoal() const {
             return listSoal;
         }
 

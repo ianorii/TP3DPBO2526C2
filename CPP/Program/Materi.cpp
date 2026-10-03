@@ -21,11 +21,11 @@ class Materi {
 
         // setter and getter for kodeMateri
         void setKodeMateri(string kodeMateri) {this->kodeMateri = kodeMateri;}
-        string getKodeMateri() {return kodeMateri;}
+        string getKodeMateri() const {return kodeMateri;}
 
         // setter and getter for namaMateri
         void setNamaMateri(string namaMateri) {this->namaMateri = namaMateri;}
-        string getNamaMateri() {return namaMateri;}
+        string getNamaMateri() const {return namaMateri;}
 
         // destructor
         ~Materi() {}

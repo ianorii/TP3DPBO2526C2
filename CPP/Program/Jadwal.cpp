@@ -20,7 +20,7 @@ class Jadwal {
             dataTutor = nullptr;
             dataMateri = nullptr;
             dataRuangan = nullptr;
-            listSiswa = {nullptr};
+            listSiswa = {};
         }
 
         // constructor with parameter
@@ -39,31 +39,31 @@ class Jadwal {
 
         // setter and getter for tanggal
         void setTanggal(string tanggal) {this->tanggal = tanggal;}
-        string getTanggal() {return tanggal;}
+        string getTanggal() const {return tanggal;}
 
         // settre and getter for jamMulai
         void setJamMulai(string jamMulai) {this->jamMulai = jamMulai;}
-        string getJamMulai() {return jamMulai;}
+        string getJamMulai() const {return jamMulai;}
 
         // settre and getter for jamSelesai
         void setJamSelesai(string jamSelesai) {this->jamSelesai = jamSelesai;}
-        string getJamSelesai() {return jamSelesai;}
+        string getJamSelesai() const {return jamSelesai;}
 
         // setter and getter for dataTutor
         void setTutor(Tutor& dataTutor) {this->dataTutor = &dataTutor;}
-        Tutor* getTutor() {return dataTutor;}
+        Tutor* getTutor() const {return dataTutor;}
         
         // setter and getter for dataMateri
         void setMateri(Materi& dataMateri) {this->dataMateri = &dataMateri;}
-        Materi* getMateri() {return dataMateri;}
+        Materi* getMateri() const {return dataMateri;}
 
         // setter and getter for dataRuangan
         void setRuangan(Ruangan& dataRuangan) {this->dataRuangan = &dataRuangan;}
-        Ruangan* getRuangan() {return dataRuangan;}
+        Ruangan* getRuangan() const {return dataRuangan;}
         
         // setter and getter for listSiswa
         void setListSiswa(vector<Siswa*>& listSiswa) {this->listSiswa = listSiswa;}
-        vector<Siswa*> getListSiswa() {return listSiswa;}
+        vector<Siswa*> getListSiswa() const {return listSiswa;}
 
         // destructor
         ~Jadwal() {}
