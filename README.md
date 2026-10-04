@@ -89,7 +89,7 @@ Konsep OOP yang dipakai dalam project ini:
 
 **Class Person**
 
-Class ini merupakan class parent (base class) dari `Tutor` dan `Siswa`. Class ini berisi atribut umum seperti `nama`, `noHp`, dan `email`. Ketiga atribut tersebut bersifat `protected` (di C++ dan Java; di Python memakai konvensi satu underscore `_nama`) karena perlu diakses oleh kelas turunan tanpa harus melalui metode getter. Ini memudahkan kelas turunan untuk menggunakan atribut tersebut, misalnya saat mengisi data lewat constructor `super()` / pemanggilan constructor parent. Method yang tersedia: constructor (kosong dan berparameter) beserta `setNama/getNama`, `setNoHp/getNoHp`, `setEmail/getEmail`.
+Class ini merupakan class induk (base class) dari `Tutor` dan `Siswa`. Class ini berisi atribut umum seperti `nama`, `noHp`, dan `email`. Ketiga atribut tersebut dibuat `protected`, artinya hanya bisa dipakai oleh class ini sendiri dan class turunannya, jadi `Tutor` dan `Siswa` bisa langsung memakainya tanpa harus lewat getter — misalnya saat mengisi data pada saat objek dibuat. Method yang tersedia: constructor (kosong dan berparameter) beserta `setNama/getNama`, `setNoHp/getNoHp`, `setEmail/getEmail`.
 
 **Class Tutor**
 
@@ -116,7 +116,7 @@ Class ini berisi atribut `kodeRuangan` dan `kapasitas`. Atribut ini bersifat pri
 
 **Class Jadwal**
 
-Class ini berisi atribut `tanggal`, `jamMulai`, `jamSelesai`, `dataTutor`, `dataMateri`, `dataRuangan`, dan `listSiswa`. Semua bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. Class ini memiliki hubungan **Aggregation** dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa` karena `Jadwal` hanya mengikat (link) objek-objek yang sudah dibuat di pihak lain — bukan membuat atau memilikinya (di C++ direferensikan lewat pointer `Tutor*`, `Materi*`, `Ruangan*`). Artinya tutor/materi/ruangan/peserta tersebut tetap ada walaupun jadwalnya dihapus. `listSiswa` juga array of object berisi peserta sesi, sehingga satu jadwal bisa diikuti banyak siswa dan satu siswa bisa mengikuti banyak jadwal (many-to-many).
+Class ini berisi atribut `tanggal`, `jamMulai`, `jamSelesai`, `dataTutor`, `dataMateri`, `dataRuangan`, dan `listSiswa`. Semua bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. Class ini memiliki hubungan **Aggregation** dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa` karena `Jadwal` hanya mengikat (link) objek-objek yang sudah dibuat di pihak lain — bukan membuat atau memilikinya sendiri. Artinya tutor/materi/ruangan/peserta tersebut tetap ada walaupun jadwalnya dihapus. `listSiswa` juga array of object yang berisi peserta sesi tersebut.
 
 **Class Tryout**
 
@@ -128,7 +128,7 @@ Class ini berisi atribut `kodeSoal` dan `subtest`. Atribut ini bersifat private 
 
 **Class HasilTryout**
 
-Class ini berisi atribut `skor` dan `dataTryout`. Keduanya bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setSkor`, `setTryout`). Class ini memiliki hubungan **Aggregation** dengan class `Tryout` karena `HasilTryout` hanya sekedar menautkan (link) dirinya ke tryout yang diikuti — objek `Tryout` dibuat dan dimiliki pihak lain, jadi tetap ada walau `HasilTryout` tidak ada. Class ini sendiri merupakan bagian dari composition milik class `Siswa` — objeknya dibuat di dalam `Siswa.setHasil()`, sehingga satu siswa bisa memiliki banyak riwayat skor (array of object `listHasilTryout`).
+Class ini berisi atribut `skor` dan `dataTryout`. Keduanya bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setSkor`, `setTryout`). Class ini memiliki hubungan **Aggregation** dengan class `Tryout` karena `HasilTryout` hanya sekedar menautkan (link) dirinya ke tryout yang diikuti — objek `Tryout` dibuat dan dimiliki pihak lain, jadi tetap ada walau `HasilTryout` tidak ada. Class ini sendiri merupakan bagian dari composition milik class `Siswa` — objeknya dibuat di dalam `Siswa.setHasil()` lalu disimpan sebagai array of object `listHasilTryout`.
 
 ### Alur Program
 
