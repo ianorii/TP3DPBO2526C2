@@ -75,106 +75,83 @@ TP3DPBO2526C2/
 
 ## Penjelasan
 
-### Implementasi Konsep
-
-Konsep OOP yang dipakai dalam project ini:
-
-- **Inheritance** — class `Tutor` dan `Siswa` mewarisi seluruh atribut dan method dari class `Person`.
-- **Hierarchical inheritance** — satu class parent (`Person`) menjadi dasar untuk dua class turunan sekaligus (`Tutor` dan `Siswa`), sehingga atribut umum `nama`, `noHp`, `email` cukup didefinisikan sekali di parent.
-- **Composition** — `Siswa` ↔ `HasilTryout`, `Tryout` ↔ `Soal`, dan `Bimbel` ↔ `Materi`/`Ruangan`/`Jadwal`. Objek anak dibuat di dalam class induk, jadi kalau induknya tidak ada, objek anak juga tidak berarti.
-- **Aggregation** — `Bimbel` ↔ `Tutor`/`Siswa`, `HasilTryout` ↔ `Tryout`, serta `Jadwal` ↔ `Tutor`/`Materi`/`Ruangan`/`Siswa`. Hubungannya hanya saling mengenal (link) lewat objek yang dirujuk — objeknya dibuat dan dimiliki pihak lain, jadi tetap hidup walau pemilik link-nya tidak ada (belah ketupat kosong pada diagram).
-- **Array of object** — kumpulan objek disimpan dalam satu struktur data: `Tutor`, `Siswa`, `Tryout`, `Soal`, `HasilTryout`, `Materi`, `Ruangan`, dan `Jadwal` (`vector<...>` di C++, `List<...>` di Java, `list` di Python).
-
 ### Penjelasan Tiap Class
 
 **Class Person**
 
-Class ini merupakan class induk (base class) dari `Tutor` dan `Siswa`. Class ini berisi atribut umum seperti `nama`, `noHp`, dan `email`. Ketiga atribut tersebut dibuat `protected`, artinya hanya bisa dipakai oleh class ini sendiri dan class turunannya, jadi `Tutor` dan `Siswa` bisa langsung memakainya tanpa harus lewat getter — misalnya saat mengisi data pada saat objek dibuat. Method yang tersedia: constructor (kosong dan berparameter) beserta `setNama/getNama`, `setNoHp/getNoHp`, `setEmail/getEmail`.
+Class induk dari `Tutor` dan `Siswa`. Isinya data umum yaitu `nama`, `noHp`, dan `email` yang sifatnya bisa langsung dipakai oleh kelas turunannya, jadi ketiga data ini tidak perlu ditulis ulang di `Tutor` maupun `Siswa`.
 
 **Class Tutor**
 
-Class ini merupakan kelas turunan dari `Person` (relasi inheritance sekaligus hierarchical inheritance). Class ini berisi atribut tambahan `bidang` dan `status`. Atribut ini bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setBidang`, `setStatus`). Sementara atribut `nama`, `noHp`, `email` diwarisi dari `Person` sehingga tidak perlu didefinisikan ulang.
+Turunan dari `Person` yang menambah `bidang` dan `status`, misalnya bidang keahlian tutor dan apakah ia masih aktif. Nama, nomor HP, dan email tetap diwarisi dari `Person`, sehingga class ini hanya perlu menyimpan bagian yang memang khusus untuk seorang tutor.
 
 **Class Siswa**
 
-Class ini merupakan kelas turunan dari `Person` (relasi inheritance sekaligus hierarchical inheritance). Class ini berisi atribut tambahan `kelas`, `targetJurusan`, `targetKampus`, dan `listHasilTryout`. Semua atribut tersebut bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. Untuk atribut `listHasilTryout`, dia merupakan **Composition** dari class `HasilTryout`, alasannya karena `HasilTryout` dan `Siswa` ini merupakan satu kesatuan — skor tryout tidak berarti tanpa siswa yang memilikinya. `HasilTryout` juga dibuat langsung di dalam method `setHasil(skor, dataTryout)`, bukan dari luar.
+Turunan dari `Person` yang menambah `kelas`, `targetJurusan`, `targetKampus`, dan riwayat skor tryout. Riwayat skor disimpan dengan composition karena `HasilTryout` dan `Siswa` dianggap satu kesatuan, jadi objek `HasilTryout` dibuat di dalam `Siswa` dan skor tidak berarti tanpa siswa yang memilikinya.
 
 **Class Bimbel**
 
-Class ini merupakan class utama yang menjadi wadah seluruh data bimbingan belajar. Class ini berisi atribut `nama`, `alamat`, `listSiswa`, `listTutor`, `listMateri`, `listRuangan`, dan `listJadwal`, semuanya private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. Relasinya:
-- **Aggregation** dengan `Tutor` dan `Siswa` — list siswa/tutor dibuat lalu dimasukkan lewat `setListSiswa()`/`setListTutor()`, jadi objeknya tetap hidup walau `Bimbel` tidak ada.
-- **Composition** dengan `Materi`, `Ruangan`, dan `Jadwal` — objeknya dibuat langsung di dalam `Bimbel` lewat `setMateri()`, `setRuangan()`, dan `setJadwal()`, jadi kalau `Bimbel` hilang, materi/ruangan/jadwal itu juga tidak berarti.
-- Kelima atribut list tersebut juga merupakan **array of object**.
+Class utama yang menjadi wadah seluruh data bimbingan belajar, berisi `nama`, `alamat`, serta daftar siswa, tutor, materi, ruangan, dan jadwal. Hubungannya dengan `Tutor` dan `Siswa` berupa aggregation karena daftarnya dibuat lalu dimasukkan dari luar, sedangkan dengan `Materi`, `Ruangan`, dan `Jadwal` berupa composition karena objeknya dibuat langsung di dalam `Bimbel`. Semua daftar tersebut termasuk array of object.
 
 **Class Materi**
 
-Class ini berisi atribut `kodeMateri` dan `namaMateri`. Atribut ini bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setKodeMateri`, `setNamaMateri`). Class ini dimiliki oleh `Bimbel` melalui relasi composition.
+Berisi `kodeMateri` dan `namaMateri` sebagai identitas tiap pelajaran yang diajarkan. Class ini termasuk bagian dari `Bimbel` lewat composition, jadi materi dibuat dan dimiliki langsung oleh bimbel.
 
 **Class Ruangan**
 
-Class ini berisi atribut `kodeRuangan` dan `kapasitas`. Atribut ini bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setKodeRuangan`, `setKapasitas`). Class ini dimiliki oleh `Bimbel` melalui relasi composition.
+Berisi `kodeRuangan` dan `kapasitas` untuk menandai tempat belajar beserta daya tampungnya. Sama seperti materi, class ini juga termasuk bagian dari `Bimbel` lewat composition.
 
 **Class Jadwal**
 
-Class ini berisi atribut `tanggal`, `jamMulai`, `jamSelesai`, `dataTutor`, `dataMateri`, `dataRuangan`, dan `listSiswa`. Semua bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. Class ini memiliki hubungan **Aggregation** dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa` karena `Jadwal` hanya mengikat (link) objek-objek yang sudah dibuat di pihak lain — bukan membuat atau memilikinya sendiri. Artinya tutor/materi/ruangan/peserta tersebut tetap ada walaupun jadwalnya dihapus. `listSiswa` juga array of object yang berisi peserta sesi tersebut.
+Berisi `tanggal`, `jamMulai`, `jamSelesai`, serta rujukan `Tutor`, `Materi`, `Ruangan`, dan daftar `Siswa` yang hadir. Semuanya berupa aggregation karena jadwal hanya mengikat objek yang sudah dibuat pihak lain, jadi tutor, materi, ruangan, dan peserta tetap ada walaupun jadwalnya dihapus. Daftar siswa di sini berisi peserta yang mengikuti sesi belajar tersebut.
 
 **Class Tryout**
 
-Class ini berisi atribut `namaTryout` dan `listSoal`. Atribut ini bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter. `listSoal` merupakan **Composition** dengan class `Soal` — objek `Soal` dibuat langsung di dalam method `setSoal(kodeSoal, subtest)`, jadi soal tidak terlepas dari paket tryoutnya. `listSoal` juga merupakan array of object.
+Berisi `namaTryout` dan daftar soal yang menjadi isi dari paket tryout. Daftar soal dibuat dengan composition, jadi objek `Soal` dibuat di dalam `Tryout` dan selalu melekat pada paket tryoutnya.
 
 **Class Soal**
 
-Class ini berisi atribut `kodeSoal` dan `subtest`. Atribut ini bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setKodeSoal`, `setSubtest`).
+Berisi `kodeSoal` dan `subtest` sebagai isi dari sebuah paket tryout. Tiap soal dibuat langsung oleh `Tryout` yang membawanya, sehingga soal tidak berdiri sendiri di luar paketnya.
 
 **Class HasilTryout**
 
-Class ini berisi atribut `skor` dan `dataTryout`. Keduanya bersifat private untuk melindungi data, jadi hanya bisa dimodifikasi melalui setter (`setSkor`, `setTryout`). Class ini memiliki hubungan **Aggregation** dengan class `Tryout` karena `HasilTryout` hanya sekedar menautkan (link) dirinya ke tryout yang diikuti — objek `Tryout` dibuat dan dimiliki pihak lain, jadi tetap ada walau `HasilTryout` tidak ada. Class ini sendiri merupakan bagian dari composition milik class `Siswa` — objeknya dibuat di dalam `Siswa.setHasil()` lalu disimpan sebagai array of object `listHasilTryout`.
+Berisi `skor` dan `dataTryout` yang menautkan siswa dengan tryout yang diikuti. Hubungannya dengan `Tryout` berupa aggregation karena objek tryout dibuat dan dimiliki pihak lain, sedangkan objeknya sendiri menjadi bagian dari composition milik `Siswa` sebagai riwayat skor.
 
 ### Alur Program
 
-Program berjalan sebagai aplikasi console (tanpa input), urutannya:
+Program berjalan sebagai aplikasi console tanpa input dari pengguna. Urutannya:
 
-1. **Inisialisasi** — `Main` membuat objek `Bimbel` (`dummyBimbel`) dan list kosong untuk `Tryout`, `Tutor`, dan `Siswa`.
-2. **`dataDummy()` — membangun data**
-   1. Membuat 3 objek `Tryout`, lalu tiap tryout diisi soal lewat `Tryout.setSoal()` (objek `Soal` dibuat otomatis di dalamnya).
-   2. Membuat 2 objek `Tutor` (warisan atribut `nama/noHp/email` dari `Person` + `bidang/status`).
-   3. Membuat 2 objek `Siswa` (warisan dari `Person` + `kelas/targetJurusan/targetKampus`), lalu menambahkan riwayat skor lewat `Siswa.setHasil(skor, tryout)` → terbentuk objek `HasilTryout` yang menghubungkan `Siswa` dengan `Tryout`.
-   4. `Bimbel` diisi nama & alamat, kemudian list siswa dan tutor dimasukkan (`setListSiswa`, `setListTutor`).
-   5. Materi, ruangan, dan jadwal diinstansiasi langsung di dalam `Bimbel` lewat `setMateri()`, `setRuangan()`, dan `setJadwal()` — pada `setJadwal`, objek `Tutor`, `Materi`, `Ruangan`, dan list `Siswa` yang sudah dibuat sebelumnya dirujuk sebagai isi sesi belajar.
-3. **`main()` — menampilkan data** (mapping relasi ke output):
-   1. Header + informasi bimbel (`Bimbel.getNama()`, `getAlamat()`).
-   2. Daftar paket tryout beserta soalnya (loop `Tryout` → loop `getListSoal()`).
-   3. Daftar tutor (atribut warisan `Person` + `bidang`/`status`).
-   4. Daftar siswa beserta riwayat skor: `Siswa.getListHasilTryout()` → `HasilTryout.getTryout().getNamaTryout()` dan `getSkor()`.
-   5. Daftar materi dan ruangan milik `Bimbel`.
-   6. Daftar jadwal aktif: tiap `Jadwal` menampilkan materi, tutor, ruangan, dan peserta yang hadir — memperlihatkan seluruh relasi terhubung sekaligus.
-4. Program selesai setelah seluruh data tercetak (tidak ada interaksi/input pengguna).
+1. Program menyiapkan objek `Bimbel` dan tiga list kosong untuk tryout, tutor, dan siswa.
+2. Data dummy dibuat, berupa tiga paket tryout beserta soalnya, dua tutor, lalu dua siswa beserta riwayat skor tryout mereka.
+3. `Bimbel` kemudian diisi nama, alamat, daftar siswa, tutor, materi, ruangan, dan jadwal. Materi, ruangan, dan jadwal dibuat langsung di dalam `Bimbel`, sedangkan tutor, materi, ruangan, dan peserta sudah dirujuk sebagai isi sesi belajar pada jadwal.
+4. Program mencetak informasi bimbel, daftar tryout beserta soalnya, daftar tutor, daftar siswa beserta skor, materi dan ruangan, terakhir daftar jadwal beserta tutor, materi, ruangan, dan pesertanya.
+5. Program selesai setelah seluruh data tercetak.
 
 # DOKUMENTASI
 
 ## CPP
 
-### Sebelum data dimasukan
+### Sebelum data dimasukkan
 <img src="./CPP/Dokumentasi/before.png" width=600>
 
-### Sebelum data dimasukan
+### Sesudah data dimasukkan
 <img src="./CPP/Dokumentasi/after1.png" width=600><br>
 <img src="./CPP/Dokumentasi/after2.png" width=600>
 
 ## Python
 
-### Sebelum data dimasukan
+### Sebelum data dimasukkan
 <img src="./Python/Dokumentasi/before.png" width=600>
 
-### Sebelum data dimasukan
+### Sesudah data dimasukkan
 <img src="./Python/Dokumentasi/after1.png" width=600><br>
 <img src="./Python/Dokumentasi/after2.png" width=600>
 
 ## Java
 
-### Sebelum data dimasukan
+### Sebelum data dimasukkan
 <img src="./Java/Dokumentasi/before.png" width=600>
 
-### Sebelum data dimasukan
+### Sesudah data dimasukkan
 <img src="./Java/Dokumentasi/after1.png" width=600><br>
 <img src="./Java/Dokumentasi/after2.png" width=600>
