@@ -1,4 +1,5 @@
 from Person import Person
+from HasilTryout import HasilTryout
 
 class Siswa(Person):
     # constructor
@@ -7,6 +8,7 @@ class Siswa(Person):
         self.__kelas = kelas
         self.__targetJurusan = targetJurusan
         self.__targetKampus = targetKampus
+        self.__listHasilTryout = []
 
     # setter and getter for kelas
     def setKelas(self, kelas):
@@ -25,3 +27,9 @@ class Siswa(Person):
         self.__targetKampus = targetKampus
     def getTargetKampus(self):
         return self.__targetKampus
+
+    # setter and getter for listHasilTryout
+    def setHasil(self, skor, dataTryout):
+        self.__listHasilTryout.append(HasilTryout(skor, dataTryout))
+    def getListHasilTryout(self):
+        return self.__listHasilTryout
