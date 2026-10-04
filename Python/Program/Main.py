@@ -93,6 +93,7 @@ def dataDummy():
     )
 
 def main():
+    # isi data dummy
     dataDummy()
 
     print("╔══════════════════════════════════════════════════════════════════════╗")
@@ -100,11 +101,13 @@ def main():
     print("║               Sistem Manajemen Akademik & Tryout SNBT                ║")
     print("╚══════════════════════════════════════════════════════════════════════╝")
 
+    # data bimbel
     print("[ INFORMASI BIMBEL ]")
     print("  • Nama Bimbel   : " + dummyBimbel.getNama())
     print("  • Alamat Kantor : " + dummyBimbel.getAlamat())
     print()
 
+    # data tryout
     print("[ DAFTAR PAKET TRYOUT ]")
     for i in range(len(dummyTryout)):
         tryout = dummyTryout[i]
@@ -114,6 +117,7 @@ def main():
             print("        - [" + soal.getKodeSoal() + "] " + soal.getSubtest())
     print()
 
+    # data tutor
     print("[ DAFTAR TUTOR ]")
     for i in range(len(dummyTutor)):
         tutor = dummyTutor[i]
@@ -124,15 +128,11 @@ def main():
         print("     └─ Status   : " + tutor.getStatus())
     print()
 
+    # data siswa
     print("[ DAFTAR SISWA ]")
     for i in range(len(dummySiswa)):
         siswa = dummySiswa[i]
-
-        # getListHasilTryout() mengembalikan list internal,
-        # jadi di-salin dulu ke variabel biasa
         riwayat = list(siswa.getListHasilTryout())
-
-        # lebar nama tryout terpanjang, supaya kolom skor sejajar
         lebarNama = 0
         for hasil in riwayat:
             lebarNama = max(lebarNama, len(hasil.getTryout().getNamaTryout()))
@@ -147,16 +147,19 @@ def main():
                   + "   (Skor : " + format(hasil.getSkor(), ".2f") + ")")
     print()
 
+    # data materi
     print("[ DAFTAR MATERI PEMBELAJARAN ]")
     for materi in dummyBimbel.getListMateri():
         print("  • [" + materi.getKodeMateri() + "] " + materi.getNamaMateri())
     print()
 
+    # data ruang kelas
     print("[ DAFTAR RUANGAN KELAS ]")
     for ruangan in dummyBimbel.getListRuangan():
         print("  • Kode: " + ruangan.getKodeRuangan() + "   │ Kapasitas: " + str(ruangan.getKapasitas()) + " Kursi")
     print()
 
+    # data jadwal
     print("[ DAFTAR JADWAL BIMBINGAN AKTIF ]")
     listJadwal = dummyBimbel.getListJadwal()
     for i in range(len(listJadwal)):
@@ -174,4 +177,4 @@ def main():
     return 0
 
 if __name__ == "__main__":
-    main()
+    main()  # jalankan main

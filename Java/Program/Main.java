@@ -84,7 +84,9 @@ public class Main {
         );
     }
 
+    // jalankan main
     public static void main(String[] args) {
+        // isi data dummy
         dataDummy();
 
         System.out.println("╔══════════════════════════════════════════════════════════════════════╗");
@@ -92,11 +94,13 @@ public class Main {
         System.out.println("║               Sistem Manajemen Akademik & Tryout SNBT                ║");
         System.out.println("╚══════════════════════════════════════════════════════════════════════╝");
 
+        // data bimbel
         System.out.println("[ INFORMASI BIMBEL ]");
         System.out.println("  • Nama Bimbel   : " + dummyBimbel.getNama());
         System.out.println("  • Alamat Kantor : " + dummyBimbel.getAlamat());
         System.out.println();
 
+        // data tryout
         System.out.println("[ DAFTAR PAKET TRYOUT ]");
         for (int i = 0; i < dummyTryout.size(); i++) {
             Tryout tryout = dummyTryout.get(i);
@@ -108,6 +112,7 @@ public class Main {
         }
         System.out.println();
 
+        // data tutor
         System.out.println("[ DAFTAR TUTOR ]");
         for (int i = 0; i < dummyTutor.size(); i++) {
             Tutor tutor = dummyTutor.get(i);
@@ -119,14 +124,13 @@ public class Main {
         }
         System.out.println();
 
+        // data siswa
         System.out.println("[ DAFTAR SISWA ]");
         for (int i = 0; i < dummySiswa.size(); i++) {
             Siswa siswa = dummySiswa.get(i);
 
-            // getListHasilTryout() sudah berupa salinan, disimpan ke variabel biasa
             List<HasilTryout> riwayat = siswa.getListHasilTryout();
 
-            // lebar nama tryout terpanjang, supaya kolom skor sejajar
             int lebarNama = 0;
             for (HasilTryout hasil : riwayat) {
                 lebarNama = Math.max(lebarNama, hasil.getTryout().getNamaTryout().length());
@@ -144,18 +148,21 @@ public class Main {
         }
         System.out.println();
 
+        // data materi
         System.out.println("[ DAFTAR MATERI PEMBELAJARAN ]");
         for (Materi materi : dummyBimbel.getListMateri()) {
             System.out.println("  • [" + materi.getKodeMateri() + "] " + materi.getNamaMateri());
         }
         System.out.println();
 
+        // data ruang kelas
         System.out.println("[ DAFTAR RUANGAN KELAS ]");
         for (Ruangan ruangan : dummyBimbel.getListRuangan()) {
             System.out.println("  • Kode: " + ruangan.getKodeRuangan() + "   │ Kapasitas: " + ruangan.getKapasitas() + " Kursi");
         }
         System.out.println();
 
+        // data jadwal
         System.out.println("[ DAFTAR JADWAL BIMBINGAN AKTIF ]");
         List<Jadwal> listJadwal = dummyBimbel.getListJadwal();
         for (int i = 0; i < listJadwal.size(); i++) {

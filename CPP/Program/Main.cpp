@@ -94,7 +94,9 @@ void dataDummy() {
     );
 }
 
+// jalankan main
 int main() {
+    // isi data dummy
     dataDummy();
 
     cout << "╔══════════════════════════════════════════════════════════════════════╗" << endl;
@@ -102,11 +104,13 @@ int main() {
     cout << "║               Sistem Manajemen Akademik & Tryout SNBT                ║" << endl;
     cout << "╚══════════════════════════════════════════════════════════════════════╝" << endl;
 
+    // data bimbel
     cout << "[ INFORMASI BIMBEL ]" << endl;
     cout << "  • Nama Bimbel   : " << dummyBimbel.getNama() << endl;
     cout << "  • Alamat Kantor : " << dummyBimbel.getAlamat() << endl;
     cout << endl;
 
+    // data tryout
     cout << "[ DAFTAR PAKET TRYOUT ]" << endl;
     for (int i = 0; i < (int)dummyTryout.size(); i++) {
         Tryout &tryout = dummyTryout[i];
@@ -118,6 +122,7 @@ int main() {
     }
     cout << endl;
 
+    // data tutor
     cout << "[ DAFTAR TUTOR ]" << endl;
     for (int i = 0; i < (int)dummyTutor.size(); i++) {
         Tutor &tutor = dummyTutor[i];
@@ -129,6 +134,7 @@ int main() {
     }
     cout << endl;
     
+    // data siswa
     cout << "[ DAFTAR SISWA ]" << endl;
     for (int i = 0; i < (int)dummySiswa.size(); i++) {
         Siswa &siswa = dummySiswa[i];
@@ -148,24 +154,28 @@ int main() {
         cout << "     ├─ Target   : " << siswa.getTargetJurusan() << " - " << siswa.getTargetKampus() << endl;
         cout << "     └─ Tryout   :" << endl;
         for (HasilTryout &hasil : riwayat) {
+            // left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
             cout << "        - " << left << setw(lebarNama) << hasil.getTryout()->getNamaTryout()
                  << "   (Skor : " << fixed << setprecision(2) << hasil.getSkor() << ")" << endl;
         }
     }
     cout << endl;
     
+    // data materi
     cout << "[ DAFTAR MATERI PEMBELAJARAN ]" << endl;
     for (const Materi &materi : dummyBimbel.getListMateri()) {
         cout << "  • [" << materi.getKodeMateri() << "] " << materi.getNamaMateri() << endl;
     }
     cout << endl;
     
+    // data ruang kelas
     cout << "[ DAFTAR RUANGAN KELAS ]" << endl;
     for (const Ruangan &ruangan : dummyBimbel.getListRuangan()) {
         cout << "  • Kode: " << ruangan.getKodeRuangan() << "   │ Kapasitas: " << ruangan.getKapasitas() << " Kursi" << endl;
     }
     cout << endl;
     
+    // data jadwal
     cout << "[ DAFTAR JADWAL BIMBINGAN AKTIF ]" << endl;
     const vector<Jadwal> &listJadwal = dummyBimbel.getListJadwal();
     for (int i = 0; i < (int)listJadwal.size(); i++) {
