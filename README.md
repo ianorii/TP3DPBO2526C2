@@ -75,6 +75,27 @@ TP3DPBO2526C2/
 
 ## Penjelasan
 
+### Implementasi Konsep
+
+Konsep OOP yang dipakai dalam project ini bisa dilihat langsung pada diagram di atas.
+
+**Inheritance**
+
+Class turunan memakai ulang atribut milik class induknya. `Tutor` dan `Siswa` mewarisi `nama`, `noHp`, dan `email` dari `Person`, sehingga ketiganya tidak perlu ditulis dua kali.
+
+**Hierarchical inheritance**
+
+Satu class induk dipakai oleh lebih dari satu class turunan sekaligus. Di sini `Person` menjadi induk untuk `Tutor` dan `Siswa`, jadi atribut umum cukup didefinisikan sekali di `Person`.
+
+**Composition**
+
+Hubungan yang tidak terpisahkan, karena objek anak dibuat langsung di dalam class induknya. Dipakai oleh `Siswa` dengan `HasilTryout`, `Tryout` dengan `Soal`, serta `Bimbel` dengan `Materi`, `Ruangan`, dan `Jadwal`. Pada diagram ditandai dengan belah ketupat hitam.
+
+**Aggregation**
+
+Hubungan antara keseluruhan dengan bagianya, di mana objek bagian tetap dibuat dan dimiliki pihak lain, jadi objeknya tetap ada walaupun hubungannya sudah dihapus. Dipakai oleh `Bimbel` dengan `Tutor` dan `Siswa`, `HasilTryout` dengan `Tryout`, serta `Jadwal` dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa`. Pada diagram ditandai dengan belah ketupat kosong.
+
+
 ### Penjelasan Tiap Class
 
 **Class Person**
