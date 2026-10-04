@@ -8,8 +8,8 @@ class Bimbel {
         vector<Siswa*> listSiswa;
         vector<Tutor*> listTutor;
         vector<Materi> listMateri;
-        vector<Ruangan> listRuangan;
         vector<Jadwal> listJadwal;
+        vector<Ruangan> listRuangan;
 
     public:
         // empty constructor
@@ -59,18 +59,19 @@ class Bimbel {
         Materi& getMateri(int index) {return listMateri[index];}
         const vector<Materi>& getListMateri() const {return listMateri;}    // akses seluruh listMateri
         
-        // setter and getter for jadwal 
-        void setJadwal(string tanggal, string jamMulai, string jamSelesai, Tutor &dataTutor, Materi &dataMateri, Ruangan &dataRuangan, const vector<Siswa*> &dataSiswa) {
-            listJadwal.emplace_back(tanggal, jamMulai, jamSelesai, dataTutor, dataMateri, dataRuangan, dataSiswa);
-        }
-        const vector<Jadwal>& getListJadwal() const {return listJadwal;}
-        
         // setter and getter for ruangan
         void setRuangan(string kodeRuangan, int kapasitas) {
             listRuangan.emplace_back(kodeRuangan, kapasitas);
         }
         Ruangan& getRuangan(int index) {return listRuangan[index];}         // akses 1 elemen
         const vector<Ruangan>& getListRuangan() const {return listRuangan;} // akses seluruh list
+        
+        // setter and getter for jadwal 
+        void setJadwal(string tanggal, string jamMulai, string jamSelesai, Tutor &dataTutor, Materi &dataMateri, Ruangan &dataRuangan, const vector<Siswa*> &dataSiswa) {
+            listJadwal.emplace_back(tanggal, jamMulai, jamSelesai, dataTutor, dataMateri, dataRuangan, dataSiswa);
+        }
+        Jadwal& getJadwal(int index) {return listJadwal[index];}         // akses 1 elemen
+        const vector<Jadwal>& getListJadwal() const {return listJadwal;}
 
         // destructor
         ~Bimbel() {}

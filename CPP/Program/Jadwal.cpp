@@ -62,6 +62,7 @@ class Jadwal {
         Ruangan* getRuangan() const {return dataRuangan;}
         
         // setter and getter for listSiswa
+        void setSiswa(Siswa* dataSiswa) {listSiswa.push_back(dataSiswa);}
         void setListSiswa(vector<Siswa*>& listSiswa) {this->listSiswa = listSiswa;}
         vector<Siswa*> getListSiswa() const {return listSiswa;}
 
