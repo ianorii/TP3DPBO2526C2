@@ -3,7 +3,65 @@ Saya Muhammad Rian Anugrah dengan NIM 2507241 mengerjakan Tugas Praktikum 3 pada
 
 # STRUKTUR FOLDER
 
-
+```text
+TP3DPBO2526C2/
+├── README.md
+├── Diagram.png
+│
+├── CPP/
+│   ├── Dokumentasi/
+│   │   ├── before.png
+│   │   ├── after1.png
+│   │   └── after2.png
+│   └── Program/
+│       ├── Main.cpp
+│       ├── Bimbel.cpp
+│       ├── HasilTryout.cpp
+│       ├── Jadwal.cpp
+│       ├── Materi.cpp
+│       ├── Person.cpp
+│       ├── Ruangan.cpp
+│       ├── Siswa.cpp
+│       ├── Soal.cpp
+│       ├── Tryout.cpp
+│       └── Tutor.cpp
+│
+├── Java/
+│   ├── Dokumentasi/
+│   │   ├── before.png
+│   │   ├── after1.png
+│   │   └── after2.png
+│   └── Program/
+│       ├── Main.java
+│       ├── Bimbel.java
+│       ├── HasilTryout.java
+│       ├── Jadwal.java
+│       ├── Materi.java
+│       ├── Person.java
+│       ├── Ruangan.java
+│       ├── Siswa.java
+│       ├── Soal.java
+│       ├── Tryout.java
+│       └── Tutor.java
+│
+└── Python/
+    ├── Dokumentasi/
+    │   ├── before.png
+    │   ├── after1.png
+    │   └── after2.png
+    └── Program/
+        ├── Main.py
+        ├── Bimbel.py
+        ├── HasilTryout.py
+        ├── Jadwal.py
+        ├── Materi.py
+        ├── Person.py
+        ├── Ruangan.py
+        ├── Siswa.py
+        ├── Soal.py
+        ├── Tryout.py
+        └── Tutor.py
+```
 
 # DESIGN
 
