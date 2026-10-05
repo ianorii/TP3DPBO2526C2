@@ -38,6 +38,6 @@ class Person {
         // method abstract: hanya deklarasi tanpa isi
         virtual vector<string> getDetail() = 0;
 
-        // destructor
-        ~Person() {}
+        // destructor virtual
+        virtual ~Person() {}
 };
