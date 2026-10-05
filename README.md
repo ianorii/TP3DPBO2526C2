@@ -91,13 +91,13 @@ Satu class induk dipakai oleh lebih dari satu class turunan sekaligus. Di sini `
 
 **Composition**
 
-Hubungan yang tidak terpisahkan, karena objek anak dibuat langsung di dalam class induknya. Dipakai oleh `Siswa` dengan `HasilTryout`, `Tryout` dengan `Soal`, serta `Bimbel` dengan `Materi`, `Ruangan`, dan `Jadwal`. Pada diagram ditandai dengan belah ketupat hitam.
+Hubungan yang tidak terpisahkan, karena objek anak dibuat langsung di dalam class induknya. Dipakai oleh `Siswa` dengan `HasilTryout`, `Tryout` dengan `Soal`, serta `Bimbel` dengan `Materi`, `Ruangan`, dan `Jadwal`.
 
 ---
 
 **Aggregation**
 
-Hubungan antara keseluruhan dengan bagianya, di mana objek bagian tetap dibuat dan dimiliki pihak lain, jadi objeknya tetap ada walaupun hubungannya sudah dihapus. Dipakai oleh `Bimbel` dengan `Tutor` dan `Siswa`, `HasilTryout` dengan `Tryout`, serta `Jadwal` dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa`. Pada diagram ditandai dengan belah ketupat kosong.
+Hubungan antara keseluruhan dengan bagianya, di mana objek bagian tetap dibuat dan dimiliki pihak lain, jadi objeknya tetap ada walaupun hubungannya sudah dihapus. Dipakai oleh `Bimbel` dengan `Tutor` dan `Siswa`, `HasilTryout` dengan `Tryout`, serta `Jadwal` dengan `Tutor`, `Materi`, `Ruangan`, dan `Siswa`.
 
 ---
 
@@ -117,7 +117,11 @@ Hubungan antara keseluruhan dengan bagianya, di mana objek bagian tetap dibuat d
 
 Beberapa data disimpan dalam bentuk kumpulan objek, bukan satu per satu. `Bimbel` menyimpan daftar siswa, tutor, materi, ruangan, dan jadwal, `Tryout` menyimpan daftar soal, `Siswa` menyimpan daftar riwayat skor, dan `Jadwal` menyimpan daftar peserta yang hadir. Dengan begitu satu objek bisa memuat banyak objek lain, lalu seluruh isi daftarnya bisa ditambah, diambil, maupun dicetak sekaligus.
 
+---
+
 ### Penjelasan Tiap Class
+
+---
 
 **Class Person**
 
