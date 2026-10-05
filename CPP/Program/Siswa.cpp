@@ -51,5 +51,30 @@ class Siswa : public Person{
             return listHasilTryout;
         }
 
+        // override method abstract Person -> polimorfisme
+        vector<string> getDetail() override {
+            vector<string> detail;
+            vector<HasilTryout> riwayat = listHasilTryout;
+
+            // lebar nama tryout terpanjang, supaya kolom skor sejajar
+            int lebarNama = 0;
+            for (HasilTryout &hasil : riwayat) {
+                lebarNama = max(lebarNama, (int)hasil.getTryout()->getNamaTryout().size());
+            }
+
+            detail.push_back(nama + " (Kelas " + to_string(kelas) + " SMA)");
+            detail.push_back("     ├─ Kontak   : " + noHp + " | " + email);
+            detail.push_back("     ├─ Target   : " + targetJurusan + " - " + targetKampus);
+            detail.push_back("     └─ Tryout   :");
+            for (HasilTryout &hasil : riwayat) {
+                ostringstream oss;
+                // left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
+                oss << "        - " << left << setw(lebarNama) << hasil.getTryout()->getNamaTryout()
+                    << "   (Skor : " << fixed << setprecision(2) << hasil.getSkor() << ")";
+                detail.push_back(oss.str());
+            }
+            return detail;
+        }
+
         ~Siswa() {}
 };

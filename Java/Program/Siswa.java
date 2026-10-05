@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Siswa extends Person {
     // atribut
@@ -45,5 +46,29 @@ public class Siswa extends Person {
     }
     public List<HasilTryout> getListHasilTryout() {
         return new ArrayList<>(listHasilTryout);    // di-copy, seperti variabel riwayat di Main.cpp
+    }
+
+    // override method abstract Person -> polimorfisme
+    @Override
+    public List<String> getDetail() {
+        List<HasilTryout> riwayat = listHasilTryout;
+
+        // lebar nama tryout terpanjang, supaya kolom skor sejajar
+        int lebarNama = 0;
+        for (HasilTryout hasil : riwayat) {
+            lebarNama = Math.max(lebarNama, hasil.getTryout().getNamaTryout().length());
+        }
+
+        List<String> detail = new ArrayList<>();
+        detail.add(nama + " (Kelas " + kelas + " SMA)");
+        detail.add("     ├─ Kontak   : " + noHp + " | " + email);
+        detail.add("     ├─ Target   : " + targetJurusan + " - " + targetKampus);
+        detail.add("     └─ Tryout   :");
+        for (HasilTryout hasil : riwayat) {
+            // left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
+            detail.add("        - " + String.format("%-" + lebarNama + "s", hasil.getTryout().getNamaTryout())
+                 + "   (Skor : " + String.format(Locale.US, "%.2f", hasil.getSkor()) + ")");
+        }
+        return detail;
     }
 }

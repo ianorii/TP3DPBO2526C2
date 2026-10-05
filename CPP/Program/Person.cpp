@@ -1,5 +1,6 @@
 using namespace std;
 
+// class abstract: tidak bisa diinstansiasi langsung
 class Person {
     protected:
         // atribut
@@ -33,6 +34,9 @@ class Person {
         // setter and getter for email
         void setEmail(string email) {this->email = email;}
         string getEmail() {return email;}
+
+        // method abstract: hanya deklarasi tanpa isi
+        virtual vector<string> getDetail() = 0;
 
         // destructor
         ~Person() {}

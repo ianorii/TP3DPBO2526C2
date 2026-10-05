@@ -27,6 +27,17 @@ class Tutor : public Person{
         void setStatus(string status) {this->status = status;}
         string getStatus() {return status;}
 
+        // override method abstract Person -> polimorfisme
+        vector<string> getDetail() override {
+            vector<string> detail;
+            detail.push_back(nama);
+            detail.push_back("     ├─ No. HP   : " + noHp);
+            detail.push_back("     ├─ Email    : " + email);
+            detail.push_back("     ├─ Bidang   : " + bidang);
+            detail.push_back("     └─ Status   : " + status);
+            return detail;
+        }
+
         // destructor
         ~Tutor() {}
 };

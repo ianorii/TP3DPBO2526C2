@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
     static Bimbel dummyBimbel = new Bimbel();
@@ -84,6 +83,15 @@ public class Main {
         );
     }
 
+    // cetak detail milik objek Person.
+    static void tampilDetail(Person person, int no) {
+        List<String> detail = person.getDetail();
+        System.out.println("  " + no + ". " + detail.get(0));
+        for (int i = 1; i < detail.size(); i++) {
+            System.out.println(detail.get(i));
+        }
+    }
+
     // jalankan main
     public static void main(String[] args) {
         // isi data dummy
@@ -115,36 +123,14 @@ public class Main {
         // data tutor
         System.out.println("[ DAFTAR TUTOR ]");
         for (int i = 0; i < dummyTutor.size(); i++) {
-            Tutor tutor = dummyTutor.get(i);
-            System.out.println("  " + (i + 1) + ". " + tutor.getNama());
-            System.out.println("     ├─ No. HP   : " + tutor.getNoHp());
-            System.out.println("     ├─ Email    : " + tutor.getEmail());
-            System.out.println("     ├─ Bidang   : " + tutor.getBidang());
-            System.out.println("     └─ Status   : " + tutor.getStatus());
+            tampilDetail(dummyTutor.get(i), i + 1);
         }
         System.out.println();
 
         // data siswa
         System.out.println("[ DAFTAR SISWA ]");
         for (int i = 0; i < dummySiswa.size(); i++) {
-            Siswa siswa = dummySiswa.get(i);
-
-            List<HasilTryout> riwayat = siswa.getListHasilTryout();
-
-            int lebarNama = 0;
-            for (HasilTryout hasil : riwayat) {
-                lebarNama = Math.max(lebarNama, hasil.getTryout().getNamaTryout().length());
-            }
-
-            System.out.println("  " + (i + 1) + ". " + siswa.getNama() + " (Kelas " + siswa.getKelas() + " SMA)");
-            System.out.println("     ├─ Kontak   : " + siswa.getNoHp() + " | " + siswa.getEmail());
-            System.out.println("     ├─ Target   : " + siswa.getTargetJurusan() + " - " + siswa.getTargetKampus());
-            System.out.println("     └─ Tryout   :");
-            for (HasilTryout hasil : riwayat) {
-                // left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
-                System.out.println("        - " + String.format("%-" + lebarNama + "s", hasil.getTryout().getNamaTryout())
-                     + "   (Skor : " + String.format(Locale.US, "%.2f", hasil.getSkor()) + ")");
-            }
+            tampilDetail(dummySiswa.get(i), i + 1);
         }
         System.out.println();
 

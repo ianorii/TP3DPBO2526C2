@@ -18,3 +18,13 @@ class Tutor(Person):
         self.__status = status
     def getStatus(self):
         return self.__status
+
+    # override method abstract Person -> polimorfisme
+    def getDetail(self):
+        detail = []
+        detail.append(self._nama)
+        detail.append("     ├─ No. HP   : " + self._noHp)
+        detail.append("     ├─ Email    : " + self._email)
+        detail.append("     ├─ Bidang   : " + self.__bidang)
+        detail.append("     └─ Status   : " + self.__status)
+        return detail

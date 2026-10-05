@@ -92,6 +92,13 @@ def dataDummy():
         [dummySiswa[1]]
     )
 
+def tampilDetail(person: Person, no: int):
+    # cetak detail milik objek Person.
+    detail = person.getDetail()
+    print("  " + str(no) + ". " + detail[0])
+    for i in range(1, len(detail)):
+        print(detail[i])
+
 def main():
     # isi data dummy
     dataDummy()
@@ -120,31 +127,13 @@ def main():
     # data tutor
     print("[ DAFTAR TUTOR ]")
     for i in range(len(dummyTutor)):
-        tutor = dummyTutor[i]
-        print("  " + str(i + 1) + ". " + tutor.getNama())
-        print("     ├─ No. HP   : " + tutor.getNoHp())
-        print("     ├─ Email    : " + tutor.getEmail())
-        print("     ├─ Bidang   : " + tutor.getBidang())
-        print("     └─ Status   : " + tutor.getStatus())
+        tampilDetail(dummyTutor[i], i + 1)
     print()
 
     # data siswa
     print("[ DAFTAR SISWA ]")
     for i in range(len(dummySiswa)):
-        siswa = dummySiswa[i]
-        riwayat = list(siswa.getListHasilTryout())
-        lebarNama = 0
-        for hasil in riwayat:
-            lebarNama = max(lebarNama, len(hasil.getTryout().getNamaTryout()))
-
-        print("  " + str(i + 1) + ". " + siswa.getNama() + " (Kelas " + str(siswa.getKelas()) + " SMA)")
-        print("     ├─ Kontak   : " + siswa.getNoHp() + " | " + siswa.getEmail())
-        print("     ├─ Target   : " + siswa.getTargetJurusan() + " - " + siswa.getTargetKampus())
-        print("     └─ Tryout   :")
-        for hasil in riwayat:
-            # left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
-            print("        - " + hasil.getTryout().getNamaTryout().ljust(lebarNama)
-                  + "   (Skor : " + format(hasil.getSkor(), ".2f") + ")")
+        tampilDetail(dummySiswa[i], i + 1)
     print()
 
     # data materi

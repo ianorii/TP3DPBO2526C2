@@ -1,4 +1,7 @@
-public class Person {
+import java.util.List;
+
+// class abstract: tidak bisa diinstansiasi langsung
+public abstract class Person {
     // atribut
     protected String nama;
     protected String noHp;
@@ -29,4 +32,7 @@ public class Person {
     // setter and getter for email
     public void setEmail(String email) {this.email = email;}
     public String getEmail() {return email;}
+
+    // method abstract: hanya deklarasi tanpa isi
+    public abstract List<String> getDetail();
 }

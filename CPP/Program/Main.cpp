@@ -76,7 +76,6 @@ void dataDummy() {
     dummyBimbel.setRuangan("R202", 50);
 
     // Data Jadwal -> langsung diinstansiasi di dalam Bimbel
-    // materi disesuaikan dengan bidang tutor pengajarnya
     dummyBimbel.setJadwal(                                              // Tutor 1 (Matematika)
         "12-10-2026", "15:30", "17:30",
         dummyTutor[0], dummyBimbel.getMateri(0), dummyBimbel.getRuangan(0),
@@ -92,6 +91,15 @@ void dataDummy() {
         dummyTutor[1], dummyBimbel.getMateri(1), dummyBimbel.getRuangan(0),
         {&dummySiswa[1]}
     );
+}
+
+// cetak detail milik objek Person.
+void tampilDetail(Person &person, int no) {
+    vector<string> detail = person.getDetail();
+    cout << "  " << no << ". " << detail[0] << endl;
+    for (int i = 1; i < (int)detail.size(); i++) {
+        cout << detail[i] << endl;
+    }
 }
 
 // jalankan main
@@ -125,39 +133,14 @@ int main() {
     // data tutor
     cout << "[ DAFTAR TUTOR ]" << endl;
     for (int i = 0; i < (int)dummyTutor.size(); i++) {
-        Tutor &tutor = dummyTutor[i];
-        cout << "  " << i + 1 << ". " << tutor.getNama() << endl;
-        cout << "     ├─ No. HP   : " << tutor.getNoHp() << endl;
-        cout << "     ├─ Email    : " << tutor.getEmail() << endl;
-        cout << "     ├─ Bidang   : " << tutor.getBidang() << endl;
-        cout << "     └─ Status   : " << tutor.getStatus() << endl;
+        tampilDetail(dummyTutor[i], i + 1);
     }
     cout << endl;
     
     // data siswa
     cout << "[ DAFTAR SISWA ]" << endl;
     for (int i = 0; i < (int)dummySiswa.size(); i++) {
-        Siswa &siswa = dummySiswa[i];
-
-        // getListHasilTryout() return const&, tapi getTryout() non-const,
-        // jadi di-salin dulu ke variabel biasa
-        vector<HasilTryout> riwayat = siswa.getListHasilTryout();
-
-        // lebar nama tryout terpanjang, supaya kolom skor sejajar
-        int lebarNama = 0;
-        for (HasilTryout &hasil : riwayat) {
-            lebarNama = max(lebarNama, (int)hasil.getTryout()->getNamaTryout().size());
-        }
-
-        cout << "  " << i + 1 << ". " << siswa.getNama() << " (Kelas " << siswa.getKelas() << " SMA)" << endl;
-        cout << "     ├─ Kontak   : " << siswa.getNoHp() << " | " << siswa.getEmail() << endl;
-        cout << "     ├─ Target   : " << siswa.getTargetJurusan() << " - " << siswa.getTargetKampus() << endl;
-        cout << "     └─ Tryout   :" << endl;
-        for (HasilTryout &hasil : riwayat) {
-            // left << setw(lebarNama) -> rata kiri, ditambah spasi sampai lebarNama
-            cout << "        - " << left << setw(lebarNama) << hasil.getTryout()->getNamaTryout()
-                 << "   (Skor : " << fixed << setprecision(2) << hasil.getSkor() << ")" << endl;
-        }
+        tampilDetail(dummySiswa[i], i + 1);
     }
     cout << endl;
     

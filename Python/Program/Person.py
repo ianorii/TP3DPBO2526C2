@@ -1,4 +1,7 @@
-class Person:
+from abc import ABC, abstractmethod
+
+# class abstract: tidak bisa diinstansiasi langsung
+class Person(ABC):
     # constructor
     def __init__(self, nama="", noHp="", email=""):
         self._nama = nama
@@ -22,3 +25,8 @@ class Person:
         self._email = email
     def getEmail(self):
         return self._email
+
+    # method abstract: hanya deklarasi tanpa isi
+    @abstractmethod
+    def getDetail(self):
+        pass
