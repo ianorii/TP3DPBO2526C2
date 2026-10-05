@@ -111,6 +111,12 @@ Hubungan antara keseluruhan dengan bagianya, di mana objek bagian tetap dibuat d
 
 `Tutor` dan `Siswa` mengisi method yang sama dengan isi yang berbeda. Saat mencetak daftar tutor dan siswa, `Main` cukup memanggil method itu satu kali lewat tipe `Person`, dan hasilnya otomatis mengikuti isi class masing-masing objek.
 
+---
+
+**Array of object**
+
+Beberapa data disimpan dalam bentuk kumpulan objek, bukan satu per satu. `Bimbel` menyimpan daftar siswa, tutor, materi, ruangan, dan jadwal, `Tryout` menyimpan daftar soal, `Siswa` menyimpan daftar riwayat skor, dan `Jadwal` menyimpan daftar peserta yang hadir. Dengan begitu satu objek bisa memuat banyak objek lain, lalu seluruh isi daftarnya bisa ditambah, diambil, maupun dicetak sekaligus.
+
 ### Penjelasan Tiap Class
 
 **Class Person**
